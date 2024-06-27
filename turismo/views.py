@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Servicios
+from .forms import ServiciosForm
 # Create your views here.
 def index(request):
     context={}
@@ -8,3 +9,14 @@ def index(request):
 def listar(request):
     servicios = Servicios.objects.all()
     return render(request, 'turismo/listar.html', {'servicios': servicios})
+
+def editar(request, producto_id):
+    servicios = get_object_or_404(Servicios, pk=servicio_id)
+    if request.method == 'POST':
+        form = ServiciosForm(request.POST, request.FILES, instance=servicio)  # Añade request.FILES aquí
+        if form.is_valid():
+            form.save()
+            return redirect('listar')
+    else:
+        form = ServiciosForm(instance=servicio)
+    return render(request, 'editar.html', {'form': form})
