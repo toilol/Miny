@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h2>Editar Producto</h2>
+    <h2>Editar Servicio</h2>
     <form method="post" class="form-group" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
-    <a href="{% url 'listar' %}" class="btn btn-primary">Ver productos</a>
-
+    <a href="{% url 'listar' %}" class="btn btn-primary">Ver servicios</a>
 </body>
 </html>

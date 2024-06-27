@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,get_object_or_404 
 from .models import Servicios
 from .forms import ServiciosForm
 # Create your views here.
@@ -11,7 +11,7 @@ def listar(request):
     return render(request, 'turismo/listar.html', {'servicios': servicios})
 
 def editar(request, servicio_id):
-    servicios = get_object_or_404(Servicios, id_servicio=servicio_id)
+    servicio = get_object_or_404(Servicios, id_servicio=servicio_id)
     if request.method == 'POST':
         form = ServiciosForm(request.POST, request.FILES, instance=servicio)  # Añade request.FILES aquí
         if form.is_valid():
