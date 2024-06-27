@@ -9,16 +9,13 @@
 <body>
     <ul class="nav justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Turismo de pana</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Turismo de pana</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Hola</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="listar.html">Servicios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <a class="nav-link" href="{% url 'listar' %}">Servicios</a>
         </li>
       </ul>
 </body>
