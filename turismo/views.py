@@ -10,8 +10,8 @@ def listar(request):
     servicios = Servicios.objects.all()
     return render(request, 'turismo/listar.html', {'servicios': servicios})
 
-def editar(request, producto_id):
-    servicios = get_object_or_404(Servicios, pk=servicio_id)
+def editar(request, servicio_id):
+    servicios = get_object_or_404(Servicios, id_servicio=servicio_id)
     if request.method == 'POST':
         form = ServiciosForm(request.POST, request.FILES, instance=servicio)  # Añade request.FILES aquí
         if form.is_valid():
