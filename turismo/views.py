@@ -19,4 +19,4 @@ def editar(request, servicio_id):
             return redirect('listar')
     else:
         form = ServiciosForm(instance=servicio)
-    return render(request, 'editar.html', {'form': form})
+    return render(request, 'turismo/editar.html', {'form': form})
