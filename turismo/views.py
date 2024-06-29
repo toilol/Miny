@@ -35,14 +35,12 @@ def borrar(request,pk):
     context={}
     try:
         servicio = Servicios.objects.get(id_servicio=pk)
-
-        servicios.delete()
+        servicio.delete()
         mensaje= "datos eliminados"
-        servicios = Servicios.objects.all()
+        servicio = Servicios.objects.all()
         context = {'servicios': servicios, 'mensaje': mensaje}
-        return render(request, 'turismo/listar.html',context)
     except:
         mensaje= "error, el servicio no existe"
-        servicios = Servicios.objects.all()
+        servicio = Servicios.objects.all()
         context = {'servicios': servicios, 'mensaje': mensaje}
         return render(request, 'turismo/listar.html', context)
