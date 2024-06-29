@@ -11,12 +11,38 @@ def listar(request):
     return render(request, 'turismo/listar.html', {'servicios': servicios})
 
 def editar(request, servicio_id):
-    servicio = get_object_or_404(Servicios, id_servicio=servicio_id)
+    servicios = get_object_or_404(Servicios, id_servicio=servicio_id)
     if request.method == 'POST':
-        form = ServiciosForm(request.POST, request.FILES, instance=servicio)  # Añade request.FILES aquí
+        form = ServiciosForm(request.POST, request.FILES, instance=servicios)  # Añade request.FILES aquí
         if form.is_valid():
             form.save()
             return redirect('listar')
     else:
-        form = ServiciosForm(instance=servicio)
+        form = ServiciosForm(instance=servicios)
     return render(request, 'turismo/editar.html', {'form': form})
+
+def agregar(request):
+    if request.method == 'POST':
+        form = ServiciosForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('listar')
+    else:
+        form = ServiciosForm()
+    return render(request, 'turismo/agregar.html', {'form': form})
+
+def borrar(request,pk):
+    context={}
+    try:
+        servicio = Servicios.objects.get(id_servicio=pk)
+
+        servicios.delete()
+        mensaje= "datos eliminados"
+        servicios = Servicios.objects.all()
+        context = {'servicios': servicios, 'mensaje': mensaje}
+        return render(request, 'turismo/listar.html',context)
+    except:
+        mensaje= "error, el servicio no existe"
+        servicios = Servicios.objects.all()
+        context = {'servicios': servicios, 'mensaje': mensaje}
+        return render(request, 'turismo/listar.html', context)
