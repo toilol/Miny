@@ -44,3 +44,17 @@ def borrar(request,pk):
         servicio = Servicios.objects.all()
         context = {'servicios': servicios, 'mensaje': mensaje}
         return render(request, 'turismo/listar.html', context)
+
+def carrito(request):
+    servicio_id = request.POST.get('servicio_id')  # suponiendo que obtienes el id del servicio
+    servicio = Servicios.objects.get(id_servicio=servicio_id)
+    
+    cart = request.session.get('cart', [])
+    cart.append({
+        'descripcion': servicio.descripcion,
+        'precio': float(servicio.precio),  # asegúrate de convertir el precio a float
+    })
+    request.session['cart'] = cart
+    
+    return HttpResponseRedirect(reverse('carrito'))  # redirecciona a la página del carrito
+
